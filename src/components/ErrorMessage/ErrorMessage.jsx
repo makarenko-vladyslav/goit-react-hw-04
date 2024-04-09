@@ -1,5 +1,6 @@
-import "./ErrorMessage.module.css";
+import css from "./ErrorMessage.module.css";
 
 export default function ErrorMessage() {
-  return <></>;
+  return <>
+  <p>Oooops!</p></>;
 }
