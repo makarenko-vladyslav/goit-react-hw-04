@@ -19,22 +19,16 @@ export default function ImageCard({ item }) {
               src={item.user.profile_image.small}
               alt={item.alt_description}
             />
-            <p className={css.autor}>
-              {item.user.name}
-              <a
-                href={
-                  "https://www.instagram.com/" + item.user.instagram_username
-                }
-              >
-                <FaInstagram className={css.instagram} />
-              </a>
-            </p>
+            <p className={css.autor}>{item.user.name}</p>
+            <a
+              href={"https://www.instagram.com/" + item.user.instagram_username}
+            >
+              <FaInstagram className={css.instagram} />
+            </a>
           </div>
           <div className={css.imgInfo}>
             <p className={css.text}>Likes: {item.likes}</p>
-            <p className={css.text}>
-              Created: {item.created_at.substr(0, 10)}
-            </p>
+            <p className={css.text}>Created: {item.created_at.substr(0, 10)}</p>
           </div>
         </div>
       </div>

@@ -19,7 +19,8 @@
 .input {
   padding: 8px 8px;
   padding-right: 36px;
-  min-width: 300px;
+  min-width: 200px;
+  max-width: 350px;
   border: 1px solid;
   border-radius: 4px;
   outline: transparent;
@@ -40,6 +41,6 @@
 
   &:hover,
   &:focus-visible {
-    transform: scale(1.15);
+    transform: scale(1.1);
   }
 }

@@ -41,10 +41,10 @@
   font-size: 18px;
   font-weight: 600;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 4px;
+  width: 170px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .imgInfo {

@@ -40,7 +40,7 @@ export default function SearchBar({ onSubmit }) {
           position="top-right"
           reverseOrder={false}
           toastOptions={{
-            duration: "4000",
+            duration: "400",
             style: {
               border: "1px solid #ff4800",
               padding: "16px",

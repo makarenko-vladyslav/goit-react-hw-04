@@ -11,8 +11,8 @@ import "./App.module.css";
 
 export default function App() {
   const [images, setimages] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [loadMore, setloadMore] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [loadMore, setloadMore] = useState(false);
   const [error, setError] = useState(false);
   const [page, setPage] = useState(1);
   const [topic, setTopic] = useState("");
@@ -24,7 +24,7 @@ export default function App() {
       setLoading(true);
       setTopic(newTopic);
       const data = await fetchImages(newTopic, page);
-      setimages(data);
+      setimages(data.results);
     } catch (error) {
       setError(true);
       setPage(0);
@@ -39,15 +39,17 @@ export default function App() {
       setError(false);
       setloadMore(false);
       setLoading(true);
-      const data = await fetchImages(topic, page + 1);
-      setimages([...images, ...data]);
-      setPage(page + 1);
+      const newPage = page + 1;
+      const data = await fetchImages(topic, newPage);
+      setimages([...images, ...data.results]);
+      setPage(newPage);
+
+      newPage >= data.total_pages ? setloadMore(false) : setloadMore(true);
     } catch (error) {
       setError(true);
       setloadMore(false);
     } finally {
       setLoading(false);
-      setloadMore(true);
     }
   };
 
@@ -55,15 +57,15 @@ export default function App() {
     <>
       <SearchBar onSubmit={handleImages}></SearchBar>
 
-      {!error || images.length > 0 ? (
+      {error ? (
+        <ErrorMessage />
+      ) : (
         <>
-          <ImageGallery items={images} />
+          {images.length > 0 && <ImageGallery items={images} />}
           {loading && <Loader />}
           {loadMore && <LoadMoreBtn onClick={handleLoadMore}></LoadMoreBtn>}
           <ImageModal></ImageModal>
         </>
-      ) : (
-        <ErrorMessage />
       )}
     </>
   );
