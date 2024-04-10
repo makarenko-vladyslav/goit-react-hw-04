@@ -11,7 +11,8 @@ import "./App.module.css";
 
 export default function App() {
   const [images, setimages] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [loadMore, setloadMore] = useState(true);
   const [error, setError] = useState(false);
   const [page, setPage] = useState(1);
   const [topic, setTopic] = useState("");
@@ -29,20 +30,24 @@ export default function App() {
       setPage(0);
     } finally {
       setLoading(false);
+      setloadMore(true);
     }
   };
 
   const handleLoadMore = async () => {
     try {
       setError(false);
+      setloadMore(false);
       setLoading(true);
       const data = await fetchImages(topic, page + 1);
       setimages([...images, ...data]);
       setPage(page + 1);
     } catch (error) {
       setError(true);
+      setloadMore(false);
     } finally {
       setLoading(false);
+      setloadMore(true);
     }
   };
 
@@ -54,7 +59,7 @@ export default function App() {
         <>
           <ImageGallery items={images} />
           {loading && <Loader />}
-          <LoadMoreBtn onClick={handleLoadMore}></LoadMoreBtn>
+          {loadMore && <LoadMoreBtn onClick={handleLoadMore}></LoadMoreBtn>}
           <ImageModal></ImageModal>
         </>
       ) : (

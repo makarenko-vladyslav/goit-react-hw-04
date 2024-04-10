@@ -1,0 +1,63 @@
+.imageWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  height: 300px;
+  overflow: hidden;
+}
+
+.image {
+  display: block;
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+}
+
+.authorInfoWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 12px;
+}
+.authorPhoto {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.autorInfo {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  overflow: hidden;
+  gap: 12px;
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+.autor {
+  font-size: 18px;
+  font-weight: 600;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+}
+
+.imgInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+}
+
+.text {
+  font-weight: 600;
+}
+
+.instagram {
+  color: rgb(255, 44, 149);
+}
