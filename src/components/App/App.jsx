@@ -16,6 +16,7 @@ export default function App() {
   const [error, setError] = useState(false);
   const [page, setPage] = useState(1);
   const [topic, setTopic] = useState("");
+  const [modal, setModal] = useState(true);
 
   const handleImages = async (newTopic) => {
     try {
@@ -53,6 +54,10 @@ export default function App() {
     }
   };
 
+  function handleModal() {
+    modal ? setModal(false) : setModal(true);
+  }
+
   return (
     <>
       <SearchBar onSubmit={handleImages}></SearchBar>
@@ -61,10 +66,14 @@ export default function App() {
         <ErrorMessage />
       ) : (
         <>
-          {images.length > 0 && <ImageGallery items={images} />}
+          {images.length > 0 && (
+            <>
+              <ImageGallery items={images} openModal={handleModal} />
+              <ImageModal openModal={handleModal}></ImageModal>
+            </>
+          )}
           {loading && <Loader />}
           {loadMore && <LoadMoreBtn onClick={handleLoadMore}></LoadMoreBtn>}
-          <ImageModal></ImageModal>
         </>
       )}
     </>
