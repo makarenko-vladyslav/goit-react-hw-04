@@ -17,6 +17,7 @@ export default function App() {
   const [page, setPage] = useState(1);
   const [topic, setTopic] = useState("");
   const [modal, setModal] = useState(false);
+  const [modalImage, setModalImage] = useState("");
 
   const handleImages = async (newTopic) => {
     try {
@@ -54,8 +55,9 @@ export default function App() {
     }
   };
 
-  function handleModal() {
-    modal ? setModal(false) : setModal(true);
+  function handleModal(imageUrl) {
+    setModal(!modal);
+    setModalImage(imageUrl);
   }
 
   return (
@@ -68,14 +70,18 @@ export default function App() {
         <>
           {images.length > 0 && (
             <>
-              <ImageGallery items={images} openModal={handleModal} />
+              <ImageGallery items={images} toggleModal={handleModal} />
             </>
           )}
           {loading && <Loader />}
           {loadMore && <LoadMoreBtn onClick={handleLoadMore}></LoadMoreBtn>}
         </>
       )}
-      <ImageModal isOpen={modal} toggleModal={handleModal}></ImageModal>
+      <ImageModal
+        isOpen={modal}
+        toggleModal={handleModal}
+        imageUrl={modalImage}
+      ></ImageModal>
     </>
   );
 }
