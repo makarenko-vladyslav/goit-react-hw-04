@@ -13,7 +13,7 @@ export default function ImageCard({ item, toggleModal }) {
             className={css.image}
             src={item.urls.small}
             alt={item.alt_description}
-            onClick={() => toggleModal(item.urls.full)}
+            onClick={() => toggleModal(item.urls.regular)}
           />
         </div>
         <div className={css.authorInfoWrapper}>
