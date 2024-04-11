@@ -21,7 +21,7 @@ export default function ImageCard({ item, toggleModal }) {
             <img
               className={css.authorPhoto}
               src={item.user.profile_image.small}
-              alt={item.alt_description}
+              alt={item.user.name}
             />
             <p className={css.autor}>{item.user.name}</p>
             <a

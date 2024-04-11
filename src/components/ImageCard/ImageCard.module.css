@@ -33,7 +33,7 @@
 
 .autorInfo {
   display: flex;
-  justify-content: start;
+  justify-content: space-between;
   align-items: center;
   overflow: hidden;
   gap: 12px;
@@ -44,6 +44,7 @@
 .autor {
   font-size: 18px;
   font-weight: 600;
+  text-align: center;
 
   width: 170px;
   white-space: nowrap;
