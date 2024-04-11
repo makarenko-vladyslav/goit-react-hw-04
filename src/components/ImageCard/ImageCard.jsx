@@ -10,6 +10,7 @@ export default function ImageCard({ item, toggleModal }) {
             className={css.image}
             src={item.urls.small}
             alt={item.alt_description}
+            onClick={toggleModal}
           />
         </div>
         <div className={css.authorInfoWrapper}>
@@ -18,7 +19,6 @@ export default function ImageCard({ item, toggleModal }) {
               className={css.authorPhoto}
               src={item.user.profile_image.small}
               alt={item.alt_description}
-              onClick={toggleModal}
             />
             <p className={css.autor}>{item.user.name}</p>
             <a
