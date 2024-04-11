@@ -1,7 +1,7 @@
 import { FaInstagram } from "react-icons/fa";
 import css from "./ImageCard.module.css";
 
-export default function ImageCard({ item, openModal }) {
+export default function ImageCard({ item, toggleModal }) {
   return (
     <>
       <div>
@@ -15,10 +15,10 @@ export default function ImageCard({ item, openModal }) {
         <div className={css.authorInfoWrapper}>
           <div className={css.autorInfo}>
             <img
-              onClick={openModal}
               className={css.authorPhoto}
               src={item.user.profile_image.small}
               alt={item.alt_description}
+              onClick={toggleModal}
             />
             <p className={css.autor}>{item.user.name}</p>
             <a

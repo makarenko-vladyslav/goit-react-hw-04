@@ -16,7 +16,7 @@ export default function App() {
   const [error, setError] = useState(false);
   const [page, setPage] = useState(1);
   const [topic, setTopic] = useState("");
-  const [modal, setModal] = useState(true);
+  const [modal, setModal] = useState(false);
 
   const handleImages = async (newTopic) => {
     try {
@@ -69,13 +69,13 @@ export default function App() {
           {images.length > 0 && (
             <>
               <ImageGallery items={images} openModal={handleModal} />
-              <ImageModal openModal={handleModal}></ImageModal>
             </>
           )}
           {loading && <Loader />}
           {loadMore && <LoadMoreBtn onClick={handleLoadMore}></LoadMoreBtn>}
         </>
       )}
+      <ImageModal isOpen={modal} toggleModal={handleModal}></ImageModal>
     </>
   );
 }
