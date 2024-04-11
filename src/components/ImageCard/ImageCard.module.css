@@ -12,6 +12,10 @@
   min-width: 100%;
   min-height: 100%;
   object-fit: cover;
+
+  &:hover {
+    cursor: zoom-in;
+  }
 }
 
 .authorInfoWrapper {
@@ -49,9 +53,18 @@
 
 .imgInfo {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  gap: 24px;
+  gap: 16px;
+  width: 100%;
+}
+
+.text {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  flex-wrap: nowrap;
+  gap: 4px;
 }
 
 .instagram {

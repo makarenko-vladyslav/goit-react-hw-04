@@ -1,4 +1,7 @@
 import { FaInstagram } from "react-icons/fa";
+import { FcLike } from "react-icons/fc";
+import { MdOutlineAddPhotoAlternate } from "react-icons/md";
+
 import css from "./ImageCard.module.css";
 
 export default function ImageCard({ item, toggleModal }) {
@@ -28,8 +31,14 @@ export default function ImageCard({ item, toggleModal }) {
             </a>
           </div>
           <div className={css.imgInfo}>
-            <p className={css.text}>Likes: {item.likes}</p>
-            <p className={css.text}>Created: {item.created_at.substr(0, 10)}</p>
+            <p className={css.text}>
+              <FcLike />
+              {item.likes}
+            </p>
+            <p className={css.text}>
+              <MdOutlineAddPhotoAlternate />
+              {item.created_at.substr(0, 10)}
+            </p>
           </div>
         </div>
       </div>

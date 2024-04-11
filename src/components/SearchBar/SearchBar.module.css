@@ -35,12 +35,13 @@
   border: transparent;
   outline: transparent;
   background-color: transparent;
-  color: #2e6deb;
+  color: #2e6deb81;
 
   transition: all 150ms linear;
 
   &:hover,
   &:focus-visible {
-    transform: scale(1.1);
+    /* transform: scale(1.05); */
+    color: #2e6debde;
   }
 }
