@@ -4,8 +4,7 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 16px;
-  padding-top: 24px;
-  padding-bottom: 24px;
+  margin-bottom: 24px;
 }
 
 .listItem {

@@ -25,17 +25,19 @@ export default function App() {
   useEffect(() => {
     if (images.length > prevImagesLength) {
       setTimeout(() => {
-        newImagesRef.current[images.length - prevImagesLength - 1]?.scrollIntoView({ behavior: "smooth" });
+        newImagesRef.current[
+          images.length - prevImagesLength - 1
+        ]?.scrollIntoView({ behavior: "smooth" });
       }, 0);
       setPrevImagesLength(images.length);
     }
   }, [images]);
-  
 
   const handleImages = async (newTopic) => {
     try {
       setimages([]);
       setError(false);
+      setloadMore(false);
       setLoading(true);
       setTopic(newTopic);
       const data = await fetchImages(newTopic, page);

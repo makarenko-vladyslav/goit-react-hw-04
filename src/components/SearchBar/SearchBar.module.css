@@ -4,6 +4,7 @@
 
   padding-top: 16px;
   padding-bottom: 16px;
+  margin-bottom: 24px;
 }
 
 .form {
@@ -41,7 +42,7 @@
 
   &:hover,
   &:focus-visible {
-    /* transform: scale(1.05); */
+    transform: scale(1.05);
     color: #2e6debde;
   }
 }
