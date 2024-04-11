@@ -10,7 +10,6 @@ export default function ImageCard({ item, toggleModal }) {
             className={css.image}
             src={item.urls.small}
             alt={item.alt_description}
-            // onClick={toggleModal}
             onClick={() => toggleModal(item.urls.full)}
           />
         </div>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { fetchImages } from "../../images-api";
 import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
 import SearchBar from "../SearchBar/SearchBar";
@@ -18,6 +18,19 @@ export default function App() {
   const [topic, setTopic] = useState("");
   const [modal, setModal] = useState(false);
   const [modalImage, setModalImage] = useState("");
+  const [prevImagesLength, setPrevImagesLength] = useState(0);
+
+  const newImagesRef = useRef();
+
+  useEffect(() => {
+    if (images.length > prevImagesLength) {
+      setTimeout(() => {
+        newImagesRef.current[images.length - prevImagesLength - 1]?.scrollIntoView({ behavior: "smooth" });
+      }, 0);
+      setPrevImagesLength(images.length);
+    }
+  }, [images]);
+  
 
   const handleImages = async (newTopic) => {
     try {
@@ -70,18 +83,22 @@ export default function App() {
         <>
           {images.length > 0 && (
             <>
-              <ImageGallery items={images} toggleModal={handleModal} />
+              <ImageGallery
+                items={images}
+                toggleModal={handleModal}
+                ref={newImagesRef}
+              />
             </>
           )}
           {loading && <Loader />}
           {loadMore && <LoadMoreBtn onClick={handleLoadMore}></LoadMoreBtn>}
+          <ImageModal
+            isOpen={modal}
+            toggleModal={handleModal}
+            imageUrl={modalImage}
+          ></ImageModal>
         </>
       )}
-      <ImageModal
-        isOpen={modal}
-        toggleModal={handleModal}
-        imageUrl={modalImage}
-      ></ImageModal>
     </>
   );
 }

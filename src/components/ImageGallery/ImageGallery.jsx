@@ -1,17 +1,17 @@
 import css from "./ImageGallery.module.css";
-
 import ImageCard from "../ImageCard/ImageCard";
+import { forwardRef } from "react";
 
-export default function ImageGallery({ items, toggleModal }) {
-  return (
-    <>
-      <ul className={css.list}>
-        {items.map((item) => (
-          <li className={css.listItem} key={item.id}>
-            <ImageCard item={item} toggleModal={toggleModal}></ImageCard>
-          </li>
-        ))}
-      </ul>
-    </>
-  );
-}
+const ImageGallery = forwardRef(({ items, toggleModal }, ref) => (
+  <ul className={css.list}>
+    {items.map((item, index) => (
+      <li className={css.listItem} key={item.id} ref={index === 0 ? ref : null}>
+        <ImageCard item={item} toggleModal={toggleModal}></ImageCard>
+      </li>
+    ))}
+  </ul>
+));
+
+ImageGallery.displayName = "ImageGallery";
+
+export default ImageGallery;
