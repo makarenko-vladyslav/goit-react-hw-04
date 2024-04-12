@@ -9,7 +9,6 @@ import ImageModal from "../ImageModal/ImageModal";
 import ScrollToTop from "../ScrollToTop/ScrollToTop";
 
 import "./App.module.css";
-import NightMode from "../NightMode/NightMode";
 
 export default function App() {
   const [images, setimages] = useState([]);
@@ -21,7 +20,7 @@ export default function App() {
   const [modal, setModal] = useState(false);
   const [modalImage, setModalImage] = useState("");
   const [shouldFetch, setShouldFetch] = useState(false);
-  const [nightMode, setNightMode] = useState(false);
+  const [nightMode, setNightMode] = useState(true);
 
   const firstNewImageRef = useRef();
 
