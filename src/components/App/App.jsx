@@ -18,20 +18,12 @@ export default function App() {
   const [topic, setTopic] = useState("");
   const [modal, setModal] = useState(false);
   const [modalImage, setModalImage] = useState("");
-  const [prevImagesLength, setPrevImagesLength] = useState(0);
   const [shouldFetch, setShouldFetch] = useState(false);
-
-  const newImagesRef = useRef();
+  const firstNewImageRef = useRef();
 
   useEffect(() => {
-    if (images.length > prevImagesLength) {
-      setTimeout(() => {
-        newImagesRef.current[
-          images.length - prevImagesLength - 1
-        ]?.scrollIntoView({ behavior: "smooth" });
-      }, 0);
-      setPrevImagesLength(images.length);
-    }
+    firstNewImageRef.current &&
+      firstNewImageRef.current.scrollIntoView({ behavior: "smooth" });
   }, [images]);
 
   useEffect(() => {
@@ -42,6 +34,9 @@ export default function App() {
         const data = await fetchImages(topic, page);
         setimages((prevImages) => [...prevImages, ...data.results]);
         setPage((prevPage) => prevPage + 1);
+        if (!data.total_pages) {
+          return setError(true);
+        }
         page >= data.total_pages ? setloadMore(false) : setloadMore(true);
       } catch (error) {
         setError(true);
@@ -63,6 +58,8 @@ export default function App() {
   };
 
   const handleLoadMore = () => {
+    setloadMore(false);
+
     setShouldFetch(true);
   };
 
@@ -84,7 +81,7 @@ export default function App() {
               <ImageGallery
                 items={images}
                 toggleModal={handleModal}
-                ref={newImagesRef}
+                ref={firstNewImageRef}
               />
             </>
           )}
