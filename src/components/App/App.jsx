@@ -6,8 +6,10 @@ import ImageGallery from "../ImageGallery/ImageGallery";
 import Loader from "../Loader/Loader";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import ImageModal from "../ImageModal/ImageModal";
+import ScrollToTop from "../ScrollToTop/ScrollToTop";
 
 import "./App.module.css";
+import NightMode from "../NightMode/NightMode";
 
 export default function App() {
   const [images, setimages] = useState([]);
@@ -19,6 +21,8 @@ export default function App() {
   const [modal, setModal] = useState(false);
   const [modalImage, setModalImage] = useState("");
   const [shouldFetch, setShouldFetch] = useState(false);
+  const [nightMode, setNightMode] = useState(false);
+
   const firstNewImageRef = useRef();
 
   useEffect(() => {
@@ -68,10 +72,27 @@ export default function App() {
     setModalImage(imageUrl);
   }
 
+  function toggleNightMode() {
+    setNightMode(!nightMode);
+  }
+
+  useEffect(() => {
+    if (nightMode) {
+      document.body.style.backgroundColor = "#2C2C2F";
+      document.body.style.color = "#fbfbfb";
+    } else {
+      document.body.style.backgroundColor = "#fbfbfb";
+      document.body.style.color = "#2e2f42";
+    }
+  }, [nightMode]);
+
   return (
     <>
-      <SearchBar onSubmit={handleImages}></SearchBar>
-
+      <SearchBar
+        onSubmit={handleImages}
+        nightMode={nightMode}
+        toggleNightMode={toggleNightMode}
+      ></SearchBar>
       {error ? (
         <ErrorMessage />
       ) : (
@@ -87,6 +108,8 @@ export default function App() {
           )}
           {loading && <Loader />}
           {loadMore && <LoadMoreBtn onClick={handleLoadMore}></LoadMoreBtn>}
+          {loadMore && <ScrollToTop />}
+
           <ImageModal
             isOpen={modal}
             toggleModal={handleModal}

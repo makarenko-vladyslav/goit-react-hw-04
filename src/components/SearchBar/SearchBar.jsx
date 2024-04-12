@@ -1,9 +1,10 @@
+import NightMode from "../NightMode/NightMode";
 import toast, { Toaster } from "react-hot-toast";
 import { IoSearch } from "react-icons/io5";
 
 import css from "./SearchBar.module.css";
 
-export default function SearchBar({ onSubmit }) {
+export default function SearchBar({ onSubmit, nightMode, toggleNightMode }) {
   const handleSubmit = (evt) => {
     evt.preventDefault();
 
@@ -20,6 +21,8 @@ export default function SearchBar({ onSubmit }) {
   return (
     <>
       <header className={css.header}>
+        <NightMode nightMode={nightMode} toggleNightMode={toggleNightMode} />
+
         <form className={css.form} onSubmit={handleSubmit}>
           <div className={css.inputWrapper}>
             <input

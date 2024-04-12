@@ -1,0 +1,12 @@
+.btnWrapper {
+  width: 60px;
+  height: 30px;
+  background-color: rgb(211, 211, 211);
+  border-radius: 10px;
+}
+
+.btn {
+  background-color: transparent;
+  border: transparent;
+  font-size: 25px;
+}
