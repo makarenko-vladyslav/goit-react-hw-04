@@ -13,7 +13,7 @@ export const fetchImages = async (topic, page) => {
                 client_id: KEY, 
                 orientation:'landscape' ,
     },
-｝）；
+  });
 
   return response.data;
 };
